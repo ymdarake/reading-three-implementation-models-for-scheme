@@ -15,7 +15,7 @@
                           (compile test (list 'test thenc elsec)))]
                     [set! (var x)
                           (compile x (list 'assign var next))]
-                    [call/cc (x)
+                    [call/cc (x); x => lambda
                              (let ([c (list 'conti
                                             (list 'argument
                                                   (compile x '(apply))))])
