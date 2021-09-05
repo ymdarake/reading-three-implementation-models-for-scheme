@@ -16,9 +16,9 @@
                     [set! (var x)
                           (compile x (list 'assign var next))]
                     [call/cc (x); x => lambda
-                             (let ([c (list 'conti
+                             (let ([c (list 'conti; creates a continuation from the current stack, places this continuation in the accumulator
                                             (list 'argument
-                                                  (compile x '(apply))))])
+                                                  (compile x '(apply))))]); sets the next expression to x.
                                (if (tail? next)
                                    c
                                    (list 'frame next c)))]
