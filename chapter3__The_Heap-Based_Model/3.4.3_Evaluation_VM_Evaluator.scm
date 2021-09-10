@@ -16,14 +16,14 @@
             [conti (x)
              (VM (continuation s) x e r s)]
             [nuate (s var)
-             (VM (car (lookup var e)) ’(return) e r s)]
+             (VM (car (lookup var e)) '(return) e r s)]
             [frame (ret x)
-             (VM a x e ’() (call-frame ret e r s))]
+             (VM a x e '() (call-frame ret e r s))]
             [argument (x)
              (VM a x e (cons a r) s)]
             [apply ()
              (record a (body e vars)
-                (VM a body (extend e vars r) ’() s))]
+                (VM a body (extend e vars r) '() s))]
             [return ()
              (record s (x e r s)
                 (VM a x e r s))])))
@@ -43,7 +43,7 @@
 
 (define continuation
     (lambda (s) ; s for stack
-        (closure (list ’nuate s ’v) ’() ’(v)))); one arg closure
+        (closure (list 'nuate s 'v) '() '(v)))); one arg closure
 
 (define call-frame
     (lambda (x e r s)
@@ -55,4 +55,4 @@
 
 (define evaluate
     (lambda (x)
-        (VM ’() (compile x ’(halt)) ’() ’() ’())))
+        (VM '() (compile x '(halt)) '() '() '())))
